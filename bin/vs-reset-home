@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+chown -R $USER:$USER $HOME
+chmod -R 755 $HOME
+chmod 700 $HOME
+chmod -R 700 $HOME/.ssh
