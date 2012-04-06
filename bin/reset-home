@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+user=`id -un`
+group=`id -gn`
+sudo chown -R ${user}:${group} $HOME
+chmod -R u=rwX,g=X,o=X $HOME
+chmod -R u=rwX,g=,o= $HOME/.ssh
