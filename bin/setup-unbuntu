@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # bash -s stable < <(curl -s https://raw.github.com/binq/home-directory/master/bin/setup-unbuntu)
 
-# apt-get update --quiet --assume-yes
-# apt-get install git --quiet --assume-yes
-# apt-get install ruby-rvm --quiet --assume-yes
-rvm install 1.9.3
+sudo apt-get update --quiet --assume-yes
+sudo apt-get install git --quiet --assume-yes
+sudo apt-get install ruby-rvm --quiet --assume-yes
+rvm install 1.9.2
