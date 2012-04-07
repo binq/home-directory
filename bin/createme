@@ -1,2 +1,8 @@
 #!/usr/bin/env bash
-useradd vansonsamuel -p pridefirst
+me=vansonsamuel
+useradd ${me}
+dest=`getent passwd $me | awk -F':' 'NR==1{print $6}'`
+cp -R $HOME/.ssh $dest
+chown -R ${me}:${me} $dest
+chmod -R u=rwX,g=X,o=X $dest
+chmod -R u=rwX,g=,o= $dest $dest/.ssh

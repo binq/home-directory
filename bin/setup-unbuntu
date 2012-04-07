@@ -1,7 +1,39 @@
 #!/usr/bin/env bash
-# bash -s stable < <(curl -s https://raw.github.com/binq/home-directory/master/bin/setup-unbuntu)
+# bash -s < <(curl -s https://raw.github.com/binq/home-directory/master/bin/setup-unbuntu)
 
-sudo apt-get update --quiet --assume-yes
+cat > ~/.gemrc <<EOM
+gem: --no-ri --no-rdoc
+EOM
+cat >> ~/.bashrc <<EOM
+alias l="ls -Alh"
+alias p="ps -HAlf"
+alias g="git"
+EOM
+sudo add-apt-repository ppa:chris-lea/node.js <<EOM
+
+EOM
+sudo apt-get update
+sudo apt-get install xvfb --quiet --assume-yes
+sudo apt-get install icedtea-netx --quiet --assume-yes               # for javaws
+sudo apt-get install x11-apps --quiet --assume-yes                   # for xwd
+sudo apt-get install netpbm --quiet --assume-yes                     # for xwdtopnm & pnmtopng
+sudo apt-get install xautomation --quiet --assume-yes                # for visgrep
 sudo apt-get install git --quiet --assume-yes
-sudo apt-get install ruby-rvm --quiet --assume-yes
-rvm install 1.9.2
+sudo apt-get install emacs23 --quiet --assume-yes
+sudo apt-get install python-software-properties --quiet --assume-yes # dependancy for nodejs
+sudo apt-get install nodejs --quiet --assume-yes
+sudo apt-get install libopenssl-ruby --quiet --assume-yes            # trying to make rails work
+sudo apt-get install libssl-dev --quiet --assume-yes                 # trying to make rails work
+#sudo apt-get install ruby-rvm --quiet --assume-yes
+sudo /usr/bin/apt-get install                                 \
+   build-essential openssl libreadline6 libreadline6-dev curl \
+   git-core zlib1g zlib1g-dev libssl-dev libyaml-dev          \
+   libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf    \
+   libc6-dev ncurses-dev automake libtool bison               \
+   subversion                                                 \
+   --quiet --assume-yes
+rvm install 1.9.3
+
+git clone git@github.com:binq/trade.git
+cd trade
+gem install rails
