@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-useradd vansonsamuel -p pridefirst
+user=vansonsamuel
+useradd ${user}
+cp -R $HOME/.ssh ~${user}/
+chown -R ${user}:${user} ~${user}
+chmod -R u=rwX,g=X,o=X ~${user}
+chmod -R u=rwX,g=,o= ~${user} ~${user}/.ssh
