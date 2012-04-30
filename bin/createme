@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-user=vansonsamuel
-useradd ${user}
-cp -R $HOME/.ssh ~${user}/
-chown -R ${user}:${user} ~${user}
-chmod -R u=rwX,g=X,o=X ~${user}
-chmod -R u=rwX,g=,o= ~${user} ~${user}/.ssh
+# bash -s < <(curl -s https://raw.github.com/binq/home-directory/master/bin/createme)
+
+me=vansonsamuel
+useradd ${me}
+dest=`getent passwd $me | awk -F':' 'NR==1{print $6}'`
+cp -R $HOME/.ssh $dest
+chown -R ${me}:${me} $dest
+chmod -R u=rwX,g=X,o=X $dest
+chmod -R u=rwX,g=,o= $dest $dest/.ssh
